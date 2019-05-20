@@ -9,7 +9,11 @@
     "test": "ng test",
     "build": "ng build --prod",
     "e2e": "ng e2e",
-    "ng": "ng"
+    "ng": "ng",
+    "compile:server": "webpack --config webpack.server.config.js --progress --colors",
+    "serve:ssr": "node dist/server",
+    "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
+    "build:client-and-server-bundles": "ng build --prod && ng run angular.io-example:server:production"
   },
   "keywords": [],
   "author": "",
@@ -23,11 +27,14 @@
     "@angular/http": "^7.1.0",
     "@angular/platform-browser": "^7.1.0",
     "@angular/platform-browser-dynamic": "^7.1.0",
+    "@angular/platform-server": "^7.1.0",
     "@angular/router": "^7.1.0",
     "@angular/upgrade": "^7.1.0",
     "@nguniversal/express-engine": "^7.1.1",
+    "@nguniversal/module-map-ngfactory-loader": "0.0.0",
     "angular-in-memory-web-api": "github:brandonroberts/in-memory-web-api-bazel#50a34d8",
     "core-js": "^2.5.4",
+    "express": "^4.15.2",
     "rxjs": "^6.5.1",
     "zone.js": "~0.8.26"
   },
@@ -48,9 +55,11 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "lodash": "^4.16.2",
     "protractor": "~5.4.0",
+    "ts-loader": "^5.2.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "^3.4.5"
+    "typescript": "~3.2.0",
+    "webpack-cli": "^3.1.0"
   },
   "repository": {}
 }
